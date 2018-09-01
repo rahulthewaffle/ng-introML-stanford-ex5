@@ -22,16 +22,14 @@ grad = zeros(size(theta));
 h = zeros(size(y));
 h = X * theta;
 
-J = 1/(2*m) * (h - y).^2;
+J = (1/(2*m)) * ((h - y).^2);
 J = sum(J);
 
 J += lambda/(2*m) * sum(theta(2:end).^2);
 
-grad = transpose(mean((h-y).*X));
+grad = transpose(mean((h-y).*X, 1));
 grad(2:end) = grad(2:end) + lambda/m * theta(2:end);
 
 % =========================================================================
-
-grad = grad(:);
 
 end
